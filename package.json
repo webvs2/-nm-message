@@ -1,0 +1,22 @@
+{
+  "name": "nm",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/estree": "^1.0.5",
+    "@types/resolve": "^1.20.6",
+    "sass": "^1.74.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "@types/animejs": "^3.1.12",
+    "animejs": "^3.2.2"
+  }
+}

@@ -1,0 +1,89 @@
+@charset "utf-8";
+@import "./animation.scss";
+// @import "../assets/icon/iconfont.scss";
+:root {
+  --base-font-color: #303133;
+  --na-succeed-color: #72e985;
+  --na-error-color: #ce4a4e;
+  --na-padding: 12px 18px;
+  --na-animation-duration: 0.5s;
+  --na-justify-content:center;
+}
+@mixin alert-theme($color, $bkColor, $side) {
+  background-color: $bkColor;
+  color: #fff;
+  .na-icon {
+    color: $color;
+    font-weight: 400;
+  }
+}
+.center {
+  left: 50%;
+  margin-left: -190px;
+  // --na-justify-content: center;
+}
+.na-box {
+  font-size: 16px;
+  // border: solid red 1px;
+  translate:translateX(-50px);
+  width: 380px;
+  display: flex;
+  justify-content: var(--na-justify-content);
+  align-items: baseline;
+  // margin: 0 auto;
+  padding: var(--na-padding);
+  text-align: var(--na-text-align);
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  // left:0;
+  // font-weight: 400;
+  // right: 50%;
+  // translate: (-50% 0);
+  // overflow: hidden;
+  span {
+   display: inline-block;
+   vertical-align: middle;
+  }
+
+}
+.enter {
+  opacity: 0;
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  animation-name: entry;
+  animation-fill-mode: forwards;
+    &:hover {
+      animation-play-state: paused;
+    }
+}
+
+// .out {
+//   animation-duration: var(--na-animation-duration);
+//   animation-timing-function: cubic-bezier(0.38, 0.63, 0.56, 0.92);
+//   animation-name: out;
+// }
+
+.alert-success {
+  @include alert-theme(#67C23A, #67C23A, var(--na-succeed-color));
+}
+
+.alert-warning {
+  @include alert-theme(#fff, #E6A23C, #ffb38c);
+}
+
+.alert-info {
+  color: var(--base-font-color) !important;
+  @include alert-theme(#909399, #909399, #ebeef5);
+}
+
+.alert-error {
+  @include alert-theme(#fef0f0, #F56C6C, var(--na-error-color));
+}
+.na-icon {
+  font-size: 18px;
+  font-weight: 400;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
