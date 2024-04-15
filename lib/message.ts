@@ -29,15 +29,8 @@ class MessageClass {
   setIndex(num: number) {
     this.index = num;
   }
-  establish() {
-    let { index, option } = this;
-    this.setIndex(index + 1);
-    let than = this;
-    // this.index++
-    if (!option.content) {throw '[message] If you use the object argument form, be aware!"content" is required';}
-    // let id = "message_" + index;
-    function MessageConstructor(data: {}): resultType {
-    let id = "message_" + index;
+  setAttr(option:optionType&{index:number}): resultType  {
+    let id = "message_" + option.index;
 
       const elem = render({
         tag: "div",
@@ -53,14 +46,9 @@ class MessageClass {
             children: option.content,
           },
         ],
-        // alert-${option.type} enter
-        // ${
-        //   option.center ? "center" : ""
-        // }
         attr: {
           class:className(`na-box center  ${option.class} alert-${option.type} `) ,
           id: id,
-          // style: { zIndex: 100 + index},
         },
       });
 
@@ -68,14 +56,22 @@ class MessageClass {
         dom: elem,
         id: id,
         domID: `#${id}`,
-        source: data,
-      } as resultType;
+        source: option,
+      } 
     }
+  establish() {
+    let { index, option } = this;
+    this.setIndex(index + 1);
+    let than = this;
+    // this.index++
+    if (!option.content) {throw '[message] If you use the object argument form, be aware!"content" is required';}
+    // let id = "message_" + index;
+
     //	 Generate and add to the body🐱‍🏍...
     let messageBox = MessageConstructor(option);
     let { source, dom, id} = messageBox;
     document.body.appendChild(dom);
-    anime({
+   let node= anime({
       targets: `#${id}`,
       translateY: ()=>index * 58+20,
       endDelay:source.durationTime+index * 500,
