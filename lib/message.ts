@@ -1,13 +1,22 @@
 import "./styles/index.scss";
 import render from "./render";
 import { optionType, resultType } from "./types";
-// import { storeSteward } from "./state";
+import { storeSteward } from "./state";
 import { className} from "./util"
 import anime from 'animejs/lib/anime.es.js';
 // import { animate  } from 'popmotion';
-// let store = new storeSteward();
+let store = new storeSteward();
 
-//	Exposure to message objects is not recommended, and is postEvented for more powerful boxes
+/**
+ * @description: Message box
+ * @param {string} type
+ * @param {string} content
+ * @param {number} durationTime
+ * @param {string} class
+ * @param {boolean} center
+ * @return {void}
+ * @example: message("success","This is a success message",3000,"",true)
+ */
 
 class MessageClass {
   defaultOption = {
@@ -20,16 +29,14 @@ class MessageClass {
   option = {} as optionType;
   index: number = 0;
   isContainer: boolean = false;
-  // containerDom: HTMLElement;
-  // constructor(option: optionType) {
-  //   this.option = Object.assign({}, this.defaultOption, option);
-  //   // this.establish();
-  // }
+
   constructor(){}
   setIndex(num: number) {
     this.index = num;
   }
   setAttr(option:optionType&{index:number}): resultType  {
+    if (!option.content) {throw '[message] If you use the object argument form, be aware!"content" is required';}
+
     let id = "message_" + option.index;
 
       const elem = render({
@@ -50,6 +57,10 @@ class MessageClass {
           class:className(`na-box center  ${option.class} alert-${option.type} `) ,
           id: id,
         },
+        // style: {
+        // marginLeft:
+           
+        // },
       });
 
       return {
@@ -60,21 +71,22 @@ class MessageClass {
       } 
     }
   establish() {
-    let { index, option } = this;
-    this.setIndex(index + 1);
+    let { index, option,setAttr } = this;
     let than = this;
-    // this.index++
-    if (!option.content) {throw '[message] If you use the object argument form, be aware!"content" is required';}
-    // let id = "message_" + index;
-
+    this.setIndex(index + 1);
     //	 Generate and add to the body🐱‍🏍...
-    let messageBox = MessageConstructor(option);
-    let { source, dom, id} = messageBox;
+
+    let { source, dom, id} =setAttr({...option,index});
+    // dom.style.marginLeft = `-${dom.offsetWidth/2}px`;
+
     document.body.appendChild(dom);
-   let node= anime({
+    dom.style.marginLeft = `-${dom.offsetWidth/2}px`;
+    store.push({ source, dom });
+   anime({
       targets: `#${id}`,
-      translateY: ()=>index * 58+20,
-      endDelay:source.durationTime+index * 500,
+      top: 38,
+      endDelay:50000,
+      // source.durationTime+index * 5000,
       //  ()=>source.durationTime+index * 100+ (typeof option.content ==="string"?option.content.length*6:0),
       direction: 'alternate',
       // easing: 'easeInCubic',
@@ -89,22 +101,22 @@ class MessageClass {
   }
 }
 
-let MessageBox = new MessageClass();
+let Box = new MessageClass();
 
 let message:any = (...data: any[]) => {
-  MessageBox.option = Object.assign({}, MessageBox.defaultOption, {
+  Box.option = Object.assign({}, Box.defaultOption, {
     type: data[0],
     content: data[1],
   });
-  MessageBox.establish();
+  Box.establish();
 };
 new Array("success", "warning", "info", "error").map((item:string) => {
   message[item] = (value: any) => {
-    MessageBox.option = Object.assign({}, MessageBox.defaultOption, {
+    Box.option = Object.assign({}, Box.defaultOption, {
       type: item,
       content: value,
     });
-    MessageBox.establish();
+    Box.establish();
   };
 });
 export default message

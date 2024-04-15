@@ -5,7 +5,7 @@
   --base-font-color: #303133;
   --na-succeed-color: #72e985;
   --na-error-color: #ce4a4e;
-  --na-padding: 12px 18px;
+  --na-padding: 6px 10px;
   --na-animation-duration: 0.5s;
   --na-justify-content:center;
 }
@@ -19,28 +19,23 @@
 }
 .center {
   left: 50%;
-  margin-left: -190px;
-  // --na-justify-content: center;
 }
 .na-box {
-  font-size: 16px;
-  // border: solid red 1px;
-  translate:translateX(-50px);
-  width: 380px;
-  display: flex;
+  font-size: 14px;
+  border: solid red 1px;
+  // translate:translateX(-50px);
+  // margin-left: ;
+  // width: 380px;
+  display: inline-flex;
   justify-content: var(--na-justify-content);
   align-items: baseline;
   // margin: 0 auto;
   padding: var(--na-padding);
   text-align: var(--na-text-align);
-  border-radius: 8px;
+  border-radius:4px;
   position: absolute;
   top: 0px;
-  // left:0;
-  // font-weight: 400;
-  // right: 50%;
-  // translate: (-50% 0);
-  // overflow: hidden;
+
   span {
    display: inline-block;
    vertical-align: middle;

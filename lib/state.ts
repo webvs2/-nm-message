@@ -1,5 +1,5 @@
   import type{resultType} from './types'
-  export  class storeSteward {
+    class storeSteward {
     store: any[] = [];
     pastDue: any[] = [];
     constructor() {
@@ -44,3 +44,22 @@
       });
     }
   }
+  type StateType =()=>object
+  interface Store {
+    [propKey: string]: any;
+  }
+  const createStore = (option:{ state:StateType,mutations:object} ) => {
+    // let store = new storeSteward();
+    // let store =option.state();
+    var proxy = new Proxy(option, {
+      get: function(target, propKey: string, receiver) {
+        return (target.state() as Store)[propKey] ;
+        // || (target.mutations as Store )[propKey];
+      },
+      set: function(target, propKey, value) {
+        return true;
+      }
+    });
+return proxy;    
+  };
+  export {createStore}
