@@ -20,7 +20,7 @@ The importance of the message is self-evident, the better way to prompt is bette
 
 Install with pnpm:
 ```
-pnpm add nm --save-dev
+pnpm add @nanometer/nm --save-dev
 ```
 
 <h2 align="left">Use</h2>
@@ -45,6 +45,6 @@ message('Hello World')
 |  postEvent   | A callback after the message has disappeared         |
 
 <h2 align="left">Contact author</h2>
-<p> *  Submit issues <a herf="https://github.com/webvs2/Nanometer">https://github.com/webvs2/Nanometer</a> </p>
-<p> *  Visit the github address <a herf="https://github.com/webvs2/Nanometer">https://github.com/webvs2/Nanometer</a></p>
+<p> *  Submit issues <a herf="https://github.com/webvs2/-nm-message/issues">https://github.com/webvs2/-nm-message/issues</a> </p>
+<p> *  Visit the github address <a herf="https://github.com/webvs2/-nm-message">https://github.com/webvs2/-nm-message</a></p>
 
