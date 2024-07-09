@@ -1,11 +1,13 @@
 {
   "name": "nm",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "dist/nm.js",
-  "bin":{
+  "bin": {
     "nm": "dist/nm.js"
   },
   "exports": {
