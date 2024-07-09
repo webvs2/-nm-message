@@ -1,14 +1,16 @@
-$startingPosition: 0px;
+$startingPosition: 0;
 $destination: 25px;
 
 @keyframes enter {
   0% {
     opacity: 0.6;
+    // top: -$destination;
     transform: translateY(-$destination);
   }
 
   100% {
     opacity: 1;
+    top: $startingPosition;
     transform: translateY($startingPosition); // top: -100px;
   }
 }

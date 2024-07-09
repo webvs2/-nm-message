@@ -42,6 +42,9 @@
   text-align: var(--na-text-align);
   border-radius:4px;
   cursor: pointer;
+  position: relative;
+  // position: absolute;
+  // top: 0;
   span {
    display: inline-block;
    vertical-align: middle;
@@ -54,7 +57,7 @@
 .enter {
   // opacity: 0;
   animation-duration: 0.3s;
-  animation-timing-function: ease;
+  // animation-timing-function: ease;
   animation-name: enter;
 }
 

@@ -3,7 +3,6 @@ import render from "./render";
 import { optionType } from "./types";
 import { className } from "./util";
 import { storeSteward } from "./state";
-// import anime from 'animejs/lib/anime.es.js';
 const store = new storeSteward();
 
 /**
@@ -24,7 +23,7 @@ class MessageClass {
   constructor(option:Partial<optionType>) {
     this.option={...{
         type: "info",
-        durationTime: 1000, //ms
+        durationTime: 3000, //ms
         postEvent:() =>{},
         class: "",
         center: true,
@@ -70,49 +69,16 @@ class MessageClass {
     store.push({source:{ ...option},dom:dom,id:id});
     
   }
-  setIndex(num: number) {
-    this.index = num;
-  }
   establish() {
-    //建立
+    //establish
     let { createContext } = this;
     createContext.call(this);
-    // let than = this;
-    // this.setIndex(index + 1);
-    // //	 Generate and add to the body🐱‍🏍...
-
-    // let { source, dom, id } = setAttr({ ...option, index });
-    // // dom.style.marginLeft = `-${dom.offsetWidth/2}px`;
-    // // console.log('dom',dom)
-    // dom.setAttribute("style", `top:${38 + index * 50}px`);
-    // document.body.appendChild(dom);
-
-    // dom.style.marginLeft = `-${dom.offsetWidth/2}px`;
-    // store.push({ source, dom });
-    //  anime({
-    //     targets: `#${id}`,
-    //     top: 38,
-    //     endDelay:50000,
-    //     // source.durationTime+index * 5000,
-    //     //  ()=>source.durationTime+index * 100+ (typeof option.content ==="string"?option.content.length*6:0),
-    //     direction: 'alternate',
-    //     // easing: 'easeInCubic',
-    //     duration: 900,
-    //     complete: function(anim) {
-    //       if(anim){
-    //       than.setIndex(than.index-1);
-    //         document.body.removeChild(dom);
-    //       }
-    //     }
-    //   });
   }
 }
 
-// let Box = new MessageClass();
-
-let message: any = (...age: string[]) => {
+let message: any = (...age: any) => {
  const a= new MessageClass({
-    type: age[0],
+    type: age[0] ,
     content: age[1],
   })
   // console.log(a)

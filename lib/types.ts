@@ -11,6 +11,8 @@ export interface optionType {
     id: String;
     source: optionType;
   }
+  // "success", "warning", "info", "error"
+  export  type messageType = "success"| "warning"| "info"| "error";
   // export interface resultType {
   //   dom: HTMLElement;
   //   id: String;

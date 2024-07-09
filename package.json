@@ -3,6 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
+  "main": "dist/nm.js",
+  "bin":{
+    "nm": "dist/nm.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/nm.js",
+      "require": "./dist/nm.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -14,9 +26,5 @@
     "sass": "^1.74.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
-  },
-  "dependencies": {
-    "@types/animejs": "^3.1.12",
-    "animejs": "^3.2.2"
   }
 }
