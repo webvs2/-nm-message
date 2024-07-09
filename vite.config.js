@@ -6,9 +6,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
-      name: '@nm/message',
-      // the proper extensions will be added
-      // fileName: '@nm/message',
+      name: 'message',
+      formats:['es']
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

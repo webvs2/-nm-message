@@ -3,13 +3,18 @@ export interface optionType {
     durationTime: number; //ms
     class?: string;
     content: string;
-    postEvent: null;
+    postEvent: () => void;
     center:boolean
   }
-  export interface resultType {
+  export interface resultType  {
     dom: HTMLElement;
     id: String;
-    domID: String;
-    source: any;
-    [propName: string]: any;
+    source: optionType;
   }
+  // export interface resultType {
+  //   dom: HTMLElement;
+  //   id: String;
+  //   domID: String;
+  //   source: any;
+  //   [propName: string]: any;
+  // }

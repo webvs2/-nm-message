@@ -1,6 +1,6 @@
 import './style.css'
 // import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from './img/vite.svg'
 import { setupCounter } from './counter.ts'
 
 

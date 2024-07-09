@@ -1,12 +1,12 @@
-  import type{resultType} from './types'
-    class storeSteward {
+  import type{resultType,optionType} from './types'
+    export class storeSteward {
     store: any[] = [];
     pastDue: any[] = [];
     constructor() {
       this.store = [];
-      // this.pastDue = [];
+      this.pastDue = [];
     }
-    push(value:any) {
+    push(value:{source:optionType,dom:HTMLElement,id:String}) {
       let index = this.pastDue.length;
       this.pastDue.push(this.timebomb(value, index));
     }
@@ -20,13 +20,16 @@
           "animationend",
           function () {
             source.postEvent?.();
-            document.body.removeChild(dom);
+            if(document.getElementById(`na-box`)){
+              document.getElementById(`na-box`)?.removeChild(dom);
+            }
+            // document.body.removeChild(dom);
           },
           false
         );
         clearTimeout(pastDue[index]);
         pastDue[index] = null;
-      }, source.durationTime);
+      }, source.durationTime + index*300 );
     }
     closeAll() {
       let { pastDue } = this;
@@ -44,22 +47,22 @@
       });
     }
   }
-  type StateType =()=>object
-  interface Store {
-    [propKey: string]: any;
-  }
-  const createStore = (option:{ state:StateType,mutations:object} ) => {
-    // let store = new storeSteward();
-    // let store =option.state();
-    var proxy = new Proxy(option, {
-      get: function(target, propKey: string, receiver) {
-        return (target.state() as Store)[propKey] ;
-        // || (target.mutations as Store )[propKey];
-      },
-      set: function(target, propKey, value) {
-        return true;
-      }
-    });
-return proxy;    
-  };
-  export {createStore}
+  // type StateType =()=>object
+  // interface Store {
+  //   [propKey: string]: any;
+  // }
+  // const createStore = (option:{ state:StateType,mutations:object} ) => {
+  //   // let store = new storeSteward();
+  //   // let store =option.state();
+  //   var proxy = new Proxy(option, {
+  //     get: function(target, propKey: string, receiver) {
+  //       return (target.state() as Store)[propKey] ;
+  //       // || (target.mutations as Store )[propKey];
+  //     },
+  //     set: function(target, propKey, value) {
+  //       return true;
+  //     }
+  //   });
+  // return proxy;    
+  // };
+  // export  {createStore }
