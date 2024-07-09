@@ -86,7 +86,7 @@ class MessageClass {
   }
 }
 
-let message: any = (...age: any) => {
+const message: any = (...age: any) => {
   let option=null
   if(!!age[0]&& typeof age[0]==='string'){
     option ={
@@ -110,4 +110,5 @@ let message: any = (...age: any) => {
 //     Box.establish();
 //   };
 // });
+
 export default message;

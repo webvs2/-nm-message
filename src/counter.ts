@@ -20,3 +20,12 @@ export function setupCounter(element: HTMLButtonElement) {
    
   );
 }
+export function setupCounter1(element: HTMLButtonElement) {
+  element.addEventListener("click", () =>{
+    console.log('close',message)
+    message.closeAll()
+  }
+   
+  );
+
+}

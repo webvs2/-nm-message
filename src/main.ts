@@ -1,6 +1,6 @@
 import './style.css'
 import viteLogo from './img/vite.svg'
-import { setupCounter } from './counter.ts'
+import { setupCounter,setupCounter1 } from './counter.ts'
 
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -12,9 +12,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h1 id="h1"> code play</h1>
     <div class="card">
       <button id="counter" type="button"></button>
+      <button id="close" type="button">close</button>
+
     </div>
  
   </div>
 `
-
+setupCounter1(document.querySelector<HTMLButtonElement>('#close')!)
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
