@@ -51,12 +51,12 @@ class MessageClass {
         id:id
       },
       children: [
-        {
-          tag: "i",
-          attr: {
-            class: `iconfont na-icon icon-${option.type}`,
-          },
-        },
+        // {
+        //   tag: "i",
+        //   attr: {
+        //     class: `iconfont na-icon icon-${option.type}`,
+        //   },
+        // },
         (
           !isele? {
             tag: "span",
@@ -88,7 +88,6 @@ class MessageClass {
 
 let message: any = (...age: any) => {
   let option=null
-  console.log(age,typeof age[0])
   if(!!age[0]&& typeof age[0]==='string'){
     option ={
         type: (age[0] as messageType) ?? "info",
