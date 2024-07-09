@@ -26,8 +26,8 @@ pnpm add nm --save-dev
 <h2 align="left">Use</h2>
 
 ```js
-import message from 'nm'
-import 'nm/dist/style.css'
+import message from '@nanometer/nm'
+import '@nanometer/nm/dist/style.css'
 
 message('Hello World')
 ```

@@ -1,6 +1,5 @@
 {
-  "name": "nm",
-  "private": true,
+  "name": "@nanometer/nm",
   "version": "1.0.0",
   "type": "module",
   "files": [
