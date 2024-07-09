@@ -2,7 +2,7 @@ export interface optionType {
     type: string;
     durationTime: number; //ms
     class?: string;
-    content: string;
+    content: string|HTMLElement;
     postEvent: () => void;
     center:boolean
   }

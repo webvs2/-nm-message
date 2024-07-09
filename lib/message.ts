@@ -1,7 +1,7 @@
 import "./styles/index.scss";
-import render from "./render";
-import { optionType } from "./types";
-import { className } from "./util";
+import render,{isElement} from "./render";
+import type { optionType,messageType } from "./types";
+import { className} from "./util";
 import { storeSteward } from "./state";
 const store = new storeSteward();
 
@@ -18,8 +18,6 @@ const store = new storeSteward();
 
 class MessageClass {
   option = {} as optionType;
-  index: number = 0;
-  isContainer: boolean = false;
   constructor(option:Partial<optionType>) {
     this.option={...{
         type: "info",
@@ -43,6 +41,7 @@ class MessageClass {
   createContext() {
     const { option } = this;
     const id = `na-box_${new Date().getTime()}`;
+    let  isele =isElement(option.content);
     const dom = render({
       tag: "div",
       attr: {
@@ -51,7 +50,6 @@ class MessageClass {
         ), 
         id:id
       },
-      // style:`transition-duration:${option.durationTime}ms;`
       children: [
         {
           tag: "i",
@@ -59,13 +57,25 @@ class MessageClass {
             class: `iconfont na-icon icon-${option.type}`,
           },
         },
-        {
-          tag: "span",
-          children: option.content,
-        },
+        (
+          !isele? {
+            tag: "span",
+            children: option.content,
+          }:{
+            tag: "div",
+            attr: {
+              id: `${id}_content`,
+            }
+          }
+        )
+       
       ],
     })
-    document.getElementById(`na-box`)?.appendChild(dom );
+
+    document.getElementById(`na-box`)?.appendChild(dom);
+    if(isele){
+      document.getElementById(`${id}_content`)?.appendChild(option.content as HTMLElement)
+    }
     store.push({source:{ ...option},dom:dom,id:id});
     
   }
@@ -77,13 +87,20 @@ class MessageClass {
 }
 
 let message: any = (...age: any) => {
- const a= new MessageClass({
-    type: age[0] ,
-    content: age[1],
-  })
-  // console.log(a)
-  a.establish();
- 
+  let option=null
+  console.log(age,typeof age[0])
+  if(!!age[0]&& typeof age[0]==='string'){
+    option ={
+        type: (age[0] as messageType) ?? "info",
+        content: age[1] ?? age[0],
+      }
+  }else if(typeof age[0]==='object'){
+    option=age[0]
+  }else{
+    console.error("The first parameter must be a string or object")
+  }
+ new MessageClass(option).establish();
+
 };
 // new Array("success", "warning", "info", "error").map((item: string) => {
 //   message[item] = (value: any) => {

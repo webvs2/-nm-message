@@ -9,7 +9,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
     </a>
 
-    <h1> code play</h1>
+    <h1 id="h1"> code play</h1>
     <div class="card">
       <button id="counter" type="button"></button>
     </div>
