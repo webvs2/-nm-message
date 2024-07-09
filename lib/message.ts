@@ -1,12 +1,12 @@
 import "./styles/index.scss";
 import render,{isElement} from "./render";
-import type { optionType,messageType } from "./types";
+import  { optionType,messageType } from "./types";
 import { className} from "./util";
 import { storeSteward } from "./state";
 const store = new storeSteward();
 
 /**
- * @description: Message box
+ * @description: Message
  * @param {string} type
  * @param {string} content
  * @param {number} durationTime
@@ -86,7 +86,8 @@ class MessageClass {
   }
 }
 
-const message: any = (...age: any) => {
+
+const message = (...age:(messageType|Partial<optionType>|string)[]) => {
   let option=null
   if(!!age[0]&& typeof age[0]==='string'){
     option ={
@@ -98,17 +99,9 @@ const message: any = (...age: any) => {
   }else{
     console.error("The first parameter must be a string or object")
   }
- new MessageClass(option).establish();
+ new MessageClass(option as optionType).establish();
 
 };
-// new Array("success", "warning", "info", "error").map((item: string) => {
-//   message[item] = (value: any) => {
-//     Box.option = Object.assign({}, Box.defaultOption, {
-//       type: item,
-//       content: value,
-//     });
-//     Box.establish();
-//   };
-// });
 
+export type {messageType,optionType}
 export default message;
