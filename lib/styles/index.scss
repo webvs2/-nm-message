@@ -8,6 +8,7 @@
   --na-padding: 6px 10px;
   --na-animation-duration: 0.5s;
   --na-justify-content:center;
+  --na-zindex:100;
 }
 @mixin alert-theme($color, $bkColor, $side) {
   background-color: $bkColor;
@@ -27,6 +28,7 @@
   flex-direction: column;
   top: 0px;
   width: 100%;
+  z-index: var(--na-zindex);
   display: inline-flex;
   padding-top: 18px;
   
@@ -43,8 +45,6 @@
   border-radius:4px;
   cursor: pointer;
   position: relative;
-  // position: absolute;
-  // top: 0;
   span {
    display: inline-block;
    vertical-align: middle;
