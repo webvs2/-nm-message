@@ -86,7 +86,11 @@ class MessageClass {
   }
 }
 
-
+/**
+ * 
+ * @param {messageType | Partial<optionType> | string} age
+ * @returns {void}
+ */
 const message = (...age:(messageType|Partial<optionType>|string)[]) => {
   let option=null
   if(!!age[0]&& typeof age[0]==='string'){

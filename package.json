@@ -16,6 +16,7 @@
     },
     "./dist/style.css": "./dist/style.css"
   },
+  "types": "dist/main.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -27,5 +28,8 @@
     "sass": "^1.74.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "vite-plugin-dts": "^3.9.1"
   }
 }
