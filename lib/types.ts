@@ -1,5 +1,6 @@
+export  type messageType = "success"| "warning"| "info"| "error";
 export interface optionType {
-    type: string;
+    type: messageType;
     durationTime: number; //ms
     class?: string;
     content: string|HTMLElement;
@@ -11,12 +12,4 @@ export interface optionType {
     id: String;
     source: optionType;
   }
-  // "success", "warning", "info", "error"
-  export  type messageType = "success"| "warning"| "info"| "error";
-  // export interface resultType {
-  //   dom: HTMLElement;
-  //   id: String;
-  //   domID: String;
-  //   source: any;
-  //   [propName: string]: any;
-  // }
+
