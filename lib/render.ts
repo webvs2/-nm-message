@@ -4,6 +4,7 @@ interface objType {
   tag: string;
   children?: any;
   attr?: any;
+  on?: any;
 }
 type renderType = (obj: objType, root?: HTMLElement) => HTMLElement;
 const cssTransition = (attr:Object) => {
@@ -27,6 +28,11 @@ export const isElement= (obj:any)=> {
 }
 const render:renderType = (obj: objType, root?: HTMLElement) => {
   const el = document.createElement(obj.tag);
+  if (!!obj.on){
+    Object.keys(obj.on).map((item) => {
+      el.addEventListener(item, obj.on[item]);
+    })
+  }
   if (!!obj.attr) {
     Object.keys(obj.attr).map((item) => {
       let property: any = null;

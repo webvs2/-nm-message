@@ -3,10 +3,15 @@ export interface optionType {
     type: messageType;
     durationTime: number; //ms
     class?: string;
+    suffix?:string|HTMLElement;
+    suffixEvent?:(data:{close:()=>void})=>any;
     content: string|HTMLElement;
-    postEvent: () => void;
-    center:boolean
+    beforeEvent?: () => void | Promise<boolean>;
+    postEvent: () => void | Promise<boolean>;
   }
+
+   
+
   export interface resultType  {
     dom: HTMLElement;
     id: String;

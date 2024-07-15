@@ -5,16 +5,6 @@ import { className} from "./util";
 import { storeSteward } from "./state";
 const store = new storeSteward();
 
-/**
- * @description: Message
- * @param {string} type
- * @param {string} content
- * @param {number} durationTime
- * @param {string} class
- * @param {boolean} center
- * @return {void}
- * @example: message("success","This is a success message",3000,"",true)
- */
 
 class MessageClass {
   option = {} as optionType;
@@ -24,7 +14,6 @@ class MessageClass {
         durationTime: 3000, //ms
         postEvent:() =>{},
         class: "",
-        center: true,
       },...option} as optionType
     if(!document.getElementById(`na-box`)){
       this.createBox()
@@ -39,14 +28,15 @@ class MessageClass {
         }}));
   }
   createContext() {
-    const { option } = this;
+    const {option} =this
+    const { type ,content,suffix} = option;
     const id = `na-box_${new Date().getTime()}`;
-    let  isele =isElement(option.content);
+    let  isele =isElement(content);
     const dom = render({
       tag: "div",
       attr: {
         class: className(
-          `na-con  enter na-box_${option.type} ${option.class} `
+          `na-con  enter na-box_${type} ${option.class} `
         ), 
         id:id
       },
@@ -60,13 +50,29 @@ class MessageClass {
         (
           !isele? {
             tag: "span",
-            children: option.content,
+            children: content,
           }:{
             tag: "div",
             attr: {
               id: `${id}_content`,
             }
           }
+        ),
+        (
+          !!suffix?{
+            tag: "div",
+            attr: {
+              class: `na-suffix`,
+            },
+            on:{
+              click:()=> {
+                option?.suffixEvent!({close:()=>{
+                  store.remove({source:{...option},dom: dom,id:id },true)
+                }});
+              }
+            },
+            children: suffix,
+          }:null
         )
        
       ],
@@ -87,7 +93,6 @@ class MessageClass {
 }
 
 /**
- * 
  * @param {messageType | Partial<optionType> | string} age
  * @returns {void}
  */

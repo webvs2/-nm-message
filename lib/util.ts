@@ -1,10 +1,13 @@
 
-export let  className=(str:string):string=>{
+export const  className=(str:string):string=>{
     return str.replace(/^\s+|\s+$/g,"")
 }
-export let cssAttrSymbolTransition=(str:string):string=>{
+export const  cssAttrSymbolTransition=(str:string):string=>{
     let text= str.replace(/[A-Z]/g,function(con){
         return `-${con.toLowerCase()}`
     })
     return text
+}
+export const isPromise = (object:any) => {
+    return object instanceof Promise;
 }
