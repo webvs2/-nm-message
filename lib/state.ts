@@ -2,7 +2,7 @@ import type { resultType, optionType } from "./types";
 import { isPromise } from "./util";
 type baseArgumentType ={ source: optionType; dom: HTMLElement; id: String }
 export class storeSteward {
-  store: any[] = [];
+  store: baseArgumentType[] = [];
   pastDue: any = null;
   constructor() {
     this.store = [];
@@ -49,7 +49,7 @@ export class storeSteward {
     const { source } = data;
     return setTimeout(() => {
       this.remove(data);
-    }, source.durationTime + store.length * 300);
+    }, source.durationTime + store.length * 1000);
   }
   removeAll() {
     this.store.map((item) => {

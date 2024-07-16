@@ -67,7 +67,8 @@ class MessageClass {
             on:{
               click:()=> {
                 option?.suffixEvent!({close:()=>{
-                  store.remove({source:{...option},dom: dom,id:id },true)
+                 console.log(store.store) 
+                  store.remove(store.store.filter((item)=>item.id===id)[0],true)
                 }});
               }
             },
