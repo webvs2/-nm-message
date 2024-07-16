@@ -21,7 +21,8 @@ pnpm add @nanometer/nm --save-dev
 ```js
 import message from "@nanometer/nm";
 import "@nanometer/nm/dist/style.css";
-
+message({type:"success",durationTime:3000,content:"Hello World"}); 
+or
 message("Hello World");
 ```
 
