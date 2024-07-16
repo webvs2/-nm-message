@@ -5,15 +5,11 @@ export function setupCounter(element: HTMLButtonElement) {
   // element.addEventListener('click', () => message('hello world'))
   element.addEventListener("click", () =>{
 // message("✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.")
-     message({
+    message({
       type: "success",
       content: "✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.",
       durationTime: 5000,
       suffix:'close',
-      suffixEvent:({close})=>{
-        close()
-        // message.closeAll()
-      },
       // beforeEvent:()=>{
       //   console.log('close','我要停下来')
       //    return new Promise((resolve, reject) => {

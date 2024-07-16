@@ -27,11 +27,11 @@ class MessageClass {
           id: `na-box`,
         }}));
   }
-  createContext() {
+   createContext() {
     const {option} =this
     const { type ,content,suffix} = option;
     const id = `na-box_${new Date().getTime()}`;
-    let  isele =isElement(content);
+    const  isele =isElement(content);
     const dom = render({
       tag: "div",
       attr: {
@@ -88,7 +88,7 @@ class MessageClass {
   }
   establish() {
     //establish
-    let { createContext } = this;
+    const { createContext } = this;
     createContext.call(this);
   }
 }
@@ -110,7 +110,6 @@ const message = (...age:(messageType|Partial<optionType>|string)[]) => {
     console.error("The first parameter must be a string or object")
   }
  new MessageClass(option as optionType).establish();
-
 };
 
 export type {messageType,optionType}
