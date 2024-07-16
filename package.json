@@ -5,6 +5,10 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "message",
+    "alert"
+  ],
   "main": "dist/nm.js",
   "bin": {
     "nm": "dist/nm.js"
