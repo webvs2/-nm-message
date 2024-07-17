@@ -67,13 +67,12 @@ class MessageClass {
             on:{
               click:()=> {
                 option?.suffixEvent!({close:()=>{
-                 console.log(store.store) 
                   store.remove(store.store.filter((item)=>item.id===id)[0],true)
                 }});
               }
             },
             children: suffix,
-          }:null
+          }:''
         )
        
       ],
