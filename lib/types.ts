@@ -14,7 +14,7 @@ export interface optionType {
 
   export interface resultType  {
     dom: HTMLElement;
-    id: String;
+    id: string;
     source: optionType;
   }
 

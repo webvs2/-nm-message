@@ -7,7 +7,7 @@ interface objType {
   on?: any;
 }
 type renderType = (obj: objType, root?: HTMLElement) => HTMLElement;
-const cssTransition = (attr:Object) => {
+const cssTransition = (attr:object) => {
   return Object.entries(attr)
     .map(([key, value]) => `${cast(key)}:${value}`)
     .join(';');
@@ -17,7 +17,7 @@ export const isElement= (obj:any)=> {
     //Using W3 DOM2 (works for FF, Opera and Chrome)
     return obj instanceof HTMLElement;
   }
-  catch(e){
+  catch(_e){
     //Browsers not supporting W3 DOM2 don't have HTMLElement and
     //an exception is thrown and we end up here. Testing some
     //properties that all elements have (works on IE7)
@@ -28,12 +28,12 @@ export const isElement= (obj:any)=> {
 }
 const render:renderType = (obj: objType, root?: HTMLElement) => {
   const el = document.createElement(obj.tag);
-  if (!!obj.on){
+  if (obj.on){
     Object.keys(obj.on).map((item) => {
       el.addEventListener(item, obj.on[item]);
     })
   }
-  if (!!obj.attr) {
+  if (obj.attr) {
     Object.keys(obj.attr).map((item) => {
       let property: any = null;
       if (typeof obj.attr?.[item] === "object") {

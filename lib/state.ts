@@ -1,6 +1,6 @@
 import type { resultType, optionType } from "./types";
 import { isPromise } from "./util";
-type baseArgumentType ={ source: optionType; dom: HTMLElement; id: String }
+type baseArgumentType ={ source: optionType; dom: HTMLElement; id: string }
 export class storeSteward {
   store: baseArgumentType[] = [];
   pastDue: any = null;
@@ -14,8 +14,8 @@ export class storeSteward {
     this.pastDue.set(value.source, this.timebomb(newObj));
   }
   async remove(data: baseArgumentType, immediate: boolean = false) {
-    let { source, dom } = data;
-    let { pastDue, store } = this;
+    const { source, dom } = data;
+    const { pastDue, store } = this;
     if (!immediate) {
       if (
         source.beforeEvent &&

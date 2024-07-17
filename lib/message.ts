@@ -59,7 +59,7 @@ class MessageClass {
           }
         ),
         (
-          !!suffix?{
+          suffix?{
             tag: "div",
             attr: {
               class: `na-suffix`,
