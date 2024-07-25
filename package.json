@@ -2,6 +2,12 @@
   "name": "@nanometer/nm",
   "version": "1.2.3",
   "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview --config vite.demo.config.js",
+    "build:demo": "vite build --config vite.demo.config.js"
+  },
   "files": [
     "dist"
   ],
@@ -21,11 +27,6 @@
     "./dist/style.css": "./dist/style.css"
   },
   "types": "dist/main.d.ts",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
   "devDependencies": {
     "@types/estree": "^1.0.5",
     "@types/resolve": "^1.20.6",
@@ -33,8 +34,5 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.9.1"
-  },
-  "dependencies": {
-
   }
 }

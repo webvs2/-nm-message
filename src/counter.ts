@@ -1,14 +1,12 @@
 import message from "../lib/main";
-export function setupCounter(element: HTMLButtonElement) {
-  element.innerHTML = `click me`;
-  // element.addEventListener('click', () => message(document.getElementById(`h1`)))
-  // element.addEventListener('click', () => message('hello world'))
+import { messageType } from './../lib/message';
+export function setupCounter(element: HTMLButtonElement,type:messageType) {
   element.addEventListener("click", () =>{
 // message("✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.")
     message({
-      type: "success",
-      content: "✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.",
-      durationTime: 5000,
+      type: type,
+      content: "✨Hello, world✨ ，I come from a place far away called the Land of No Stories.",
+      durationTime: 3000,
       suffix:'close',
       // beforeEvent:()=>{
       //   console.log('close','我要停下来')
