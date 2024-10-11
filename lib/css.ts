@@ -84,7 +84,11 @@ export const out=css`
   animation-name: ${outAnimation};
 `
 
-export const naSuccess = css`${alertTheme('#67c23a', '#67c23a' )}`
-export const naError = css`${alertTheme('#fef0f0', '#f56c6c')}`
+export const success = css`${alertTheme('#67c23a', '#67c23a' )}`
+export const error = css`${alertTheme('#fef0f0', '#f56c6c')}`
+export const warning = css`${alertTheme('#fff', '#e6a23c')}`
+export const info = css`${alertTheme('#909399', '#fff')} color: #333  !important;`
+export default {}
+
 
 
