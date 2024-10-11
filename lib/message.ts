@@ -1,7 +1,5 @@
-// import "./styles/index.scss";
 import render, { isElement } from "./render";
 import { optionType, messageType } from "./types";
-// import { className} from "./util";
 import { storeSteward } from "./state";
 import { naBox, naCon, warning, error, success, info, enter } from "./css";
 import { cx } from "@emotion/css";
@@ -32,10 +30,8 @@ class MessageClass {
           class: cx(naBox, this.BoxID),
           id: this.BoxID,
         },
-        // className:styles.naBox
       })
     );
-    // setUpRoot()
   }
   createContext() {
     const { option } = this;
@@ -51,16 +47,12 @@ class MessageClass {
           option.class,
           {
             [info]: type === "info",
-
             [success]: type === "success",
             [error]: type === "error",
             [warning]: type === "warning",
           },
           `na-con`
         ),
-        // className(
-        //   `na-con  enter na-box_${type} ${option.class} `
-        // ),
         id: id,
       },
       children: [
