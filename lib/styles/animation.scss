@@ -4,7 +4,6 @@ $destination: 25px;
 @keyframes enter {
   0% {
     opacity: 0.6;
-    // top: -$destination;
     transform: translateY(-$destination);
   }
 

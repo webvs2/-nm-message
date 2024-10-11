@@ -1,15 +1,15 @@
 import './style.css'
 import viteLogo from './img/vite.svg'
-import { setupCounter,setupCounter1 } from './counter.ts'
+import { setupCounter } from './counter.ts'
 
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
+  <div class="app">
     <a href="https://vitejs.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
     </a>
     <h1 id="h1"> code play</h1>
-       <p>
+       <p class="introduce">
     This is a great message prompter, it takes up very little memory and space, but provides common usage, and from a modern front-end build, you can use it alone in the project or incorporate it into the base library, it is very useful.
     </p>
     <div class="card">

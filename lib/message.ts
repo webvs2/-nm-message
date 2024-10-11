@@ -1,12 +1,14 @@
-import "./styles/index.scss";
+// import "./styles/index.scss";
 import render,{isElement} from "./render";
 import  { optionType,messageType } from "./types";
-import { className} from "./util";
+// import { className} from "./util";
 import { storeSteward } from "./state";
+import {naBox,naCon,naSuccess,enter} from './css'
+import { cx} from '@emotion/css'
+
 const store = new storeSteward();
-
-
 class MessageClass {
+  BoxID=`na-box`;
   option = {} as optionType;
   constructor(option:Partial<optionType>) {
     this.option={...{
@@ -23,9 +25,13 @@ class MessageClass {
     document.body.appendChild(render({
         tag: "div",
         attr: {
-          class:`na-box`,
-          id: `na-box`,
-        }}));
+          class:cx(naBox,this.BoxID) ,
+          id: this.BoxID,
+          
+        },
+        // className:styles.naBox
+      }));
+      // setUpRoot()
   }
    createContext() {
     const {option} =this
@@ -35,9 +41,10 @@ class MessageClass {
     const dom = render({
       tag: "div",
       attr: {
-        class: className(
-          `na-con  enter na-box_${type} ${option.class} `
-        ), 
+        class: cx(naCon,enter,option.class,{[naSuccess]:type==='success'},`na-con`),
+        // className(
+        //   `na-con  enter na-box_${type} ${option.class} `
+        // ), 
         id:id
       },
       children: [
@@ -78,7 +85,7 @@ class MessageClass {
       ],
     })
 
-    document.getElementById(`na-box`)?.appendChild(dom);
+    document.getElementById(this.BoxID)?.appendChild(dom);
     if(isele){
       document.getElementById(`${id}_content`)?.appendChild(option.content as HTMLElement)
     }

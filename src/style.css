@@ -94,3 +94,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.introduce{
+  display: inline-block;
+  width: 50%;
+  
+}
+.app{
+  /* border: solid red 1px; */
+  text-align: center;
+}

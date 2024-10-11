@@ -6,14 +6,14 @@ export function setupCounter(element: HTMLButtonElement,type:messageType) {
     message({
       type: type,
       content: "✨Hello, world✨ ，I come from a place far away called the Land of No Stories.",
-      durationTime: 3000,
-      suffix:'close',
-      // beforeEvent:()=>{
-      //   console.log('close','我要停下来')
-      //    return new Promise((resolve, reject) => {
-      //   resolve(false);
-      //   });
-      // }
+      durationTime: false,
+      suffix:'😁😀',
+      suffixEvent:({close})=>{
+        console.log('close','我要停下来',close())
+        //  return new Promise((resolve, reject) => {
+        // resolve(false);
+        //   });
+      }
     });
     // message({
     //   type: "success",
