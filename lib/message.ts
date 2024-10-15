@@ -3,7 +3,6 @@ import { optionType, messageType } from "./types";
 import { storeSteward } from "./state";
 import { naBox, naCon, warning, error, success, info, enter } from "./css";
 import { cx } from "@emotion/css";
-
 const store = new storeSteward();
 class MessageClass {
   BoxID = `na-box`;
