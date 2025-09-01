@@ -1,7 +1,6 @@
 import "./styles/index.scss";
 import render, { isElement } from "./tool/render";
 import { optionType, messageType } from "./tool/interfaces";
-import { className } from "./tool/util";
 import { StoreSteward } from "./tool/state";
  const store = new StoreSteward();
 // 添加全局默认配置
@@ -57,9 +56,9 @@ class MessageClass {
     const dom = render({
       tag: "div",
       attr: {
-        class: className(
+        class: 
           `na-con  enter na-box_${type} ${option.class} `
-        ),
+        ,
         id: id,
         style: { top: `${20 + 0 * 70}px` },
       },
@@ -107,31 +106,12 @@ class MessageClass {
 
       ].filter(item => item !== undefined) as any[],
     })
-console.log('dom', id)
     document.getElementById(this.message_id)!.appendChild(dom);
-  
     store.push({ ...optionMerged , dom: id, message_id: this.message_id });
-   
-
-    // store.push({ source: { ...option, type, content, suffix }, dom: dom, id: id });
-    // if (isele) {
-    //   document.getElementById(`${id}_content`)?.appendChild(option.content as HTMLElement)
-    // }
-
-    // 为每个容器创建独立的StoreSteward实例
-    // const store = new StoreSteward();
-    // store.push({ source: { ...option }, dom: dom, id: id });
   }
-  // establish() {
-  //   //establish
-  //   return this.createContext();
-  // }
 
-  // 添加静态init方法来设置全局默认配置
   static init(options: Partial<optionType>) {
     globalDefaultOptions = { ...globalDefaultOptions, ...options };
-    // 返回一个带有预配置的实例
-
     // return new MessageClass({});
   }
 }

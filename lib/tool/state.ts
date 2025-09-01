@@ -7,15 +7,12 @@ interface TimeoutMap {
 }
 
 export class StoreSteward {
-  // 使用Map代替数组以提供O(1)的查找性能
+  // Use a Map instead of an array to achieve O(1) lookup performance
   private store: Map<string, BaseArgumentType> = new Map();
-  // 使用普通对象存储timeout ID以提高性能
   private timeouts: TimeoutMap = {};
   
   push(value: BaseArgumentType) {
-    // 直接使用ID作为键存储，提供O(1)访问
     this.store.set(value.id, value);
-    // 使用ID作为timeout映射的键
     this.timeouts[value.id] = this.timebomb(value);
   }
   
@@ -45,17 +42,15 @@ export class StoreSteward {
       false
     );
     
-    // 清除定时器并从存储中删除
+    // Clear the timer and delete it from the storage.
     if (this.timeouts[id]) {
       clearTimeout(this.timeouts[id]);
       delete this.timeouts[id];
     }
     console.log('vnode',this.timeouts);
     
-    // 直接通过ID删除，O(1)复杂度
     this.store.delete(id);
 
-    // console.log('vnode',this.timeouts);
 
 
   }
@@ -65,19 +60,15 @@ export class StoreSteward {
     const { durationTime, id } = data;
     return setTimeout(() => {
       this.remove(data);
-      // 清理timeout引用
     
     }, durationTime);
   }
   
   removeAll() {
-    // 将forEach改为for-of循环以提高性能
     for (const item of this.store.values()) {
       this.remove(item);
     }
   }
-  
-  // 添加获取存储大小的方法
   size(): number {
     return this.store.size;
   }
@@ -87,12 +78,12 @@ export class StoreSteward {
     return this.store.has(id);
   }
   
-  // 添加根据ID查找项目的方法
+  // Add a method for searching for projects by ID
   findById(id: string): BaseArgumentType | undefined {
     return this.store.get(id);
   }
   
-  // 添加获取所有值的公共方法
+  // Add a public method for obtaining all values
   values(): IterableIterator<BaseArgumentType> {
     return this.store.values();
   }
