@@ -8,6 +8,7 @@ export interface optionType {
     content: string|HTMLElement;
     beforeEvent?: () => void | Promise<boolean>;
     postEvent: () => void | Promise<boolean>;
+     container?: string | HTMLElement;
   }
 
    

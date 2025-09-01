@@ -1,20 +1,21 @@
-import message from "../lib/main";
-import { messageType } from './../lib/message';
-export function setupCounter(element: HTMLButtonElement,type:messageType) {
+import {Message} from "../lib/index";
+// import { messageType } from './../lib/message';
+const  message= new Message();
+export function setupCounter(element: HTMLButtonElement,type:any) {
   element.addEventListener("click", () =>{
-// message("✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.")
-    message({
-      type: type,
-      content: "✨Hello, world✨ ，I come from a place far away called the Land of No Stories.",
-      durationTime: 3000,
-      suffix:'close',
-      // beforeEvent:()=>{
-      //   console.log('close','我要停下来')
-      //    return new Promise((resolve, reject) => {
-      //   resolve(false);
-      //   });
-      // }
-    });
+message.show("✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.")
+    // message({
+    //   type: type,
+    //   content: "✨Hello, world✨ ，I come from a place far away called the Land of No Stories.",
+    //   durationTime: 3000,
+    //   suffix:'close',
+    //   // beforeEvent:()=>{
+    //   //   console.log('close','我要停下来')
+    //   //    return new Promise((resolve, reject) => {
+    //   //   resolve(false);
+    //   //   });
+    //   // }
+    // });
     // message({
     //   type: "success",
     //   content: "I'm a front-end developer, and I'm here to help you with your project.",

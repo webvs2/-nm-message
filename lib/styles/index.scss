@@ -1,28 +1,33 @@
 @charset "utf-8";
 @import "./animation.scss";
+
 // @import "../assets/icon/iconfont.scss";
 :root {
   --base-font-color: #303133;
   --na-succeed-color: #72e985;
   --na-error-color: #ce4a4e;
   --na-padding: 6px 10px;
-  --na-animation-duration: 0.5s;
+  --na-animation-duration: 0.3s;
   --na-justify-content: center;
   --na-zindex: 100;
 }
+
 @mixin alert-theme($color, $bkColor, $side) {
   background-color: $bkColor;
   color: #fff;
+
   .na-icon {
     color: $color;
     font-weight: 400;
   }
 }
+
 .center {
   left: 50%;
 }
+
 .na-box {
-  position: fixed;
+  position: absolute;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -32,9 +37,10 @@
   display: inline-flex;
   padding-top: 18px;
 }
+
 .na-con {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 15px;
+  // margin-bottom: 15px;
   font-size: 14px;
   display: inline-flex;
   justify-content: var(--na-justify-content);
@@ -43,27 +49,32 @@
   text-align: var(--na-text-align);
   border-radius: 4px;
   cursor: pointer;
-  position: relative;
+  position: absolute;
+
   span {
     display: inline-block;
     vertical-align: middle;
   }
+
   &:hover {
     opacity: 0.95;
   }
+
   transition: all;
 }
+
 .enter {
-  // opacity: 0;
-  animation-duration: 0.3s;
-  animation-timing-function: ease;
+  animation-duration: var(--na-animation-duration);
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation-name: enter;
+  animation-fill-mode: both;
 }
 
 .out {
   animation-duration: var(--na-animation-duration);
-  animation-timing-function: cubic-bezier(0.38, 0.63, 0.56, 0.92);
+  animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   animation-name: out;
+  animation-fill-mode: both;
 }
 
 .na-box_success {
@@ -82,6 +93,7 @@
 .na-box_error {
   @include alert-theme(#fef0f0, #f56c6c, var(--na-error-color));
 }
+
 .na-icon {
   font-size: 18px;
   font-weight: 400;
@@ -89,6 +101,7 @@
   vertical-align: middle;
   margin-right: 6px;
 }
+
 .na-suffix {
   top: 0;
   bottom: 0;

@@ -3,21 +3,20 @@ $destination: 25px;
 
 @keyframes enter {
   0% {
-    opacity: 0.6;
-    // top: -$destination;
+    opacity: 0;
     transform: translateY(-$destination);
   }
 
   100% {
     opacity: 1;
-    top: $startingPosition;
-    transform: translateY($startingPosition); // top: -100px;
+    transform: translateY($startingPosition);
   }
 }
+
 @keyframes out {
   0% {
     opacity: 1;
-    transform: translateY($startingPosition); // top: -100px;
+    transform: translateY($startingPosition);
   }
 
   100% {
