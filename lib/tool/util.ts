@@ -1,7 +1,4 @@
 
-export const  className=(str:string):string=>{
-    return str.replace(/^\s+|\s+$/g,"")
-}
 export const  cssAttrSymbolTransition=(str:string):string=>{
     const text= str.replace(/[A-Z]/g,function(con){
         return `-${con.toLowerCase()}`

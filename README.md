@@ -1,7 +1,7 @@
-<h2 align="centre">Introduce:</h2>
-<h4>
+<h1 align="centre">Introduce:</h1>
+<p>
 This is a great message prompter, it takes up very little memory and space, but provides common usage, and from a modern front-end build, you can use it alone in the project or incorporate it into the base library, it is very useful.
-</h4>
+</p>
 
 <h2 align="centre">Feature:</h2>
   * ✨Very small space and memory footprint.<br />
@@ -20,10 +20,9 @@ pnpm add @nanometer/nm --save-dev
 
 ```js
 import message from "@nanometer/nm";
-import "@nanometer/nm/dist/style.css";
 
-message({type:"success",durationTime:3000,content:"Hello World"}); 
-or
+message({ type: "success", durationTime: 3000, content: "Hello World" });
+or;
 message("Hello World");
 ```
 

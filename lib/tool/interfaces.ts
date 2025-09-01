@@ -1,7 +1,7 @@
 export  type messageType = "success"| "warning"| "info"| "error";
 export interface optionType {
     type: messageType;
-    durationTime: number; //ms
+    durationTime: number|Boolean; //ms
     class?: string;
     suffix?:string|HTMLElement;
     suffixEvent?:(data:{close:()=>void})=>any;
