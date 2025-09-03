@@ -107,6 +107,10 @@ const message = new Message();
 | `suffixEvent` | `(data: {close: () => void}) => any` | - | 后缀点击事件 |
  
 
+### 返回值
+
+- `message.show(...)` 会返回一个对象：`{ close: () => void }`，用于手动关闭该条消息。
+
 ### 高级用法
 
 ```javascript
@@ -141,6 +145,15 @@ message.show({
     close();
   }
 });
+
+// 使用返回的关闭句柄
+const { close } = message.show({
+  type: "info",
+  content: "3 秒后自动关闭，也可手动关闭",
+  durationTime: 3000
+});
+// 某些场景下，提前手动关闭
+// close();
 
 // 不自动关闭的消息
 message.show({

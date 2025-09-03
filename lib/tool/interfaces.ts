@@ -1,10 +1,10 @@
 export  type messageType = "success"| "warning"| "info"| "error";
 export interface optionType {
     type: messageType;
-    durationTime: number|Boolean; //ms
+    durationTime: number|boolean; //ms
     class?: string;
     suffix?:string|HTMLElement;
-    suffixEvent?:({})=>void;
+    suffixEvent?:(ctx: { close: () => void })=>void;
     content: string|HTMLElement;
     // beforeEvent?: () => void | Promise<boolean>;
     // postEvent: () => void | Promise<boolean>;

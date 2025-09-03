@@ -13,16 +13,14 @@ let globalDefaultOptions: Partial<optionType> = {
 
 class MessageClass {
   option = {} as optionType;
-  message_id: any = null;
+  message_id: string | null = null;
   constructor() {
-    if (this.message_id == null) {
-      this.createBox()
-    }
-
+    // 延迟创建容器到首次 show 时，以便拿到最新 container
   }
 
   // 获取容器元素
   getContainer() {
+    if (typeof document === "undefined") return null as any;
     if (typeof this.option.container === 'string') {
       return document.querySelector(this.option.container) || document.body;
     } else if (this.option.container instanceof HTMLElement) {
@@ -33,8 +31,9 @@ class MessageClass {
   }
 
   createBox() {
+    if (typeof document === "undefined") return;
     this.message_id = `na-box` + (Math.random().toString().slice(2, 8));
-    this.getContainer().appendChild(render({
+    this.getContainer()?.appendChild(render({
       tag: "div",
       attr: {
         class: `na-box`,
@@ -44,14 +43,22 @@ class MessageClass {
 
   }
   show(option: Partial<optionType>|string) {
+    if (typeof document === "undefined") {
+      return { close: () => {} };
+    }
     let option2 = option as Partial<optionType>;
     if (typeof option === 'string') {
       option2 = { content: option };
     }
     const optionMerged = { ...globalDefaultOptions, ...option2 } as optionType;
+    this.option = optionMerged as optionType;
+    if (this.message_id == null) {
+      this.createBox();
+    }
     const  { type, content, suffix } =optionMerged
     const id =this.message_id +`_`+'item'+new Date().getTime()+ Math.floor(Math.random()*1000);
-    const isele = isElement(content);
+    const boxEl = document.getElementById(this.message_id!);
+    const index = boxEl ? boxEl.children.length : 0;
     const dom = render({
       tag: "div",
       attr: {
@@ -59,7 +66,7 @@ class MessageClass {
           `na-con  enter na-box_${type} ${optionMerged.class} `
         ,
         id: id,
-        style: { top: `${20 + 0 * 20}px` },
+        style: { top: `${20 + index * 12}px` },
       },
       children: [content,
         (
@@ -70,7 +77,8 @@ class MessageClass {
             },
             on: {
               click: () => {
-                optionMerged?.suffixEvent!(optionMerged);
+                const close = () => store.remove({ ...optionMerged , dom: id, message_id: this.message_id }, true);
+                optionMerged?.suffixEvent && optionMerged.suffixEvent({ close });
               }
             },
             children: suffix,
@@ -79,8 +87,10 @@ class MessageClass {
 
       ].filter(item => item !== undefined) as any[],
     })
-    document.getElementById(this.message_id)!.appendChild(dom as HTMLElement);
+    document.getElementById(this.message_id!)!.appendChild(dom as HTMLElement);
     store.push({ ...optionMerged , dom: id, message_id: this.message_id });
+    const close = () => store.remove({ ...optionMerged , dom: id, message_id: this.message_id }, true);
+    return { close };
   }
 
   static init(options: Partial<optionType>) {

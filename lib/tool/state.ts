@@ -13,7 +13,9 @@ export class StoreSteward {
   
   push(value: BaseArgumentType) {
     this.store.set(value.dom, value);
-    this.timeouts[value.dom] = this.timebomb(value);
+    if (value.durationTime !== false && typeof value.durationTime === "number") {
+      this.timeouts[value.dom] = this.timebomb(value);
+    }
   }
   
   async remove(data: BaseArgumentType, immediate: boolean = false) {
@@ -27,10 +29,9 @@ export class StoreSteward {
     vnode.addEventListener(
       "animationend",
       function () {
-        // const naBox = document.getElementById(message_id);
           naBox!.removeChild(vnode);
       },
-      false
+      { once: true } as any
     );
     // Clear the timer and delete it from the storage.
     if (this.timeouts[dom]) {
@@ -45,12 +46,11 @@ export class StoreSteward {
   }
   
   timebomb(data: BaseArgumentType) {
-    // console.log('timebomb',data);
-    const { durationTime, id } = data;
+    const { durationTime } = data;
+    const delay = (typeof durationTime === "number" ? durationTime : 0) + this.store.size * 500;
     return setTimeout(() => {
       this.remove(data);
-    
-    }, durationTime+this.store.size*500);
+    }, delay);
   }
   
   removeAll() {
