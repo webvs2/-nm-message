@@ -13,7 +13,7 @@ interface ObjType {
   on?: EventHandler;
 }
 
-type RenderType = (obj: ObjType, root?: HTMLElement) => HTMLElement;
+type RenderType = (obj: ObjType, root?: HTMLElement) => HTMLElement|false;
 
 const cssTransition = (attr: Record<string, string | number | boolean>): string => {
   return Object.entries(attr)
@@ -39,6 +39,13 @@ export const isElement = (obj: unknown): obj is HTMLElement => {
 }
 
 const render: RenderType = (obj: ObjType, root?: HTMLElement) => {
+  if(isElement(obj) ) {
+    return root ? root.appendChild(obj) : obj;
+  }
+  if(typeof obj === "string" || typeof obj === "number"){
+     root!.appendChild(document.createTextNode(String(obj)))
+    return false;
+  }
   const el = document.createElement(obj.tag);
   if (obj.on){
     Object.keys(obj.on).map((item) => {

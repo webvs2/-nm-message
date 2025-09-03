@@ -2,8 +2,27 @@ import {Message} from "../lib/index";
 // import { messageType } from './../lib/message';
 const  message= new Message();
 export function setupCounter(element: HTMLButtonElement,type:any) {
+  const sss = document.createElement('span');
+  sss.innerHTML = "0";
   element.addEventListener("click", () =>{
-message.show("✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.")
+    message.show({
+      type: 'success',
+      content: 'sss',
+      durationTime: 3000,
+      suffix:'close',
+      suffixEvent:()=>{console.log('close')}
+  })
+  })
+
+    // message.show({
+    //   type: 'success',
+    //   content: "✨Hello, world✨ ，I come from a place far away called the Land of No Stories.",
+    //   durationTime: 3000,
+    //   suffix:'close',
+    //   })
+      
+    
+// message.show("✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.")
     // message({
     //   type: type,
     //   content: "✨Hello, world✨ ，I come from a place far away called the Land of No Stories.",
@@ -24,20 +43,18 @@ message.show("✨Hello, I'm Pengpeng✨ ，I come from a place far away called t
     //   }
     // })
   }
-   
-  );
-}
+
 // message({
 //   type: "success",
 //   content: "✨Hello, I'm Pengpeng✨ ，I come from a place far away called the Land of No Stories.",
 //   durationTime: 113000,
 // });
-export function setupCounter1(element: HTMLButtonElement) {
-  element.addEventListener("click", () =>{
-    console.log('close',message)
-    // message.closeAll()
-  }
+// export function setupCounter1(element: HTMLButtonElement) {
+//   element.addEventListener("click", () =>{
+//     console.log('close',message)
+//     // message.closeAll()
+//   }
    
-  );
+//   );
 
-}
+// }

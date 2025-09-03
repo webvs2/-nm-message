@@ -4,10 +4,10 @@ export interface optionType {
     durationTime: number|Boolean; //ms
     class?: string;
     suffix?:string|HTMLElement;
-    suffixEvent?:(data:{close:()=>void})=>any;
+    suffixEvent?:({})=>void;
     content: string|HTMLElement;
-    beforeEvent?: () => void | Promise<boolean>;
-    postEvent: () => void | Promise<boolean>;
+    // beforeEvent?: () => void | Promise<boolean>;
+    // postEvent: () => void | Promise<boolean>;
      container?: string | HTMLElement;
   }
 

@@ -23,7 +23,7 @@
 - **⚡ 现代化构建** - 基于 TypeScript + Vite 构建，支持 ES 模块
 - **🎭 灵活配置** - 支持参数模式或直接调用，满足不同使用场景
 - **🎪 动画效果** - 流畅的进入/退出动画，提升用户体验
-- **🔗 事件支持** - 完整的事件回调机制，支持前置和后置事件处理
+- **🔗 事件支持** - 支持后缀点击等交互
 
 ## 📦 安装
 
@@ -105,8 +105,7 @@ const message = new Message();
 | `container` | `string \| HTMLElement` | `document.body` | 消息容器 |
 | `suffix` | `string \| HTMLElement` | - | 后缀内容 |
 | `suffixEvent` | `(data: {close: () => void}) => any` | - | 后缀点击事件 |
-| `beforeEvent` | `() => void \| Promise<boolean>` | - | 关闭前事件 |
-| `postEvent` | `() => void \| Promise<boolean>` | - | 关闭后事件 |
+ 
 
 ### 高级用法
 
@@ -140,19 +139,6 @@ message.show({
   suffixEvent: ({ close }) => {
     console.log("撤销操作");
     close();
-  }
-});
-
-// 事件处理
-message.show({
-  type: "success",
-  content: "操作完成",
-  beforeEvent: () => {
-    console.log("即将关闭");
-    return true; // 返回 false 可阻止关闭
-  },
-  postEvent: () => {
-    console.log("已关闭");
   }
 });
 
@@ -203,6 +189,10 @@ pnpm build
 # 预览演示
 pnpm preview
 ```
+
+## 🕘 历史更新记录
+
+- 2025-09-03：移除了 `beforeEvent` 和 `postEvent` 方法。
 
 ## 📄 许可证
 

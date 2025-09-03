@@ -12,56 +12,45 @@ export class StoreSteward {
   private timeouts: TimeoutMap = {};
   
   push(value: BaseArgumentType) {
-    this.store.set(value.id, value);
-    this.timeouts[value.id] = this.timebomb(value);
+    this.store.set(value.dom, value);
+    this.timeouts[value.dom] = this.timebomb(value);
   }
   
   async remove(data: BaseArgumentType, immediate: boolean = false) {
-    const { beforeEvent, dom, id,postEvent,message_id } = data;
+    const {  dom,message_id } = data;
     const  vnode =document.getElementById(dom)!;
+    const naBox = document.getElementById(message_id);
     if (!immediate) {
-      if (
-        beforeEvent &&
-        beforeEvent() &&
-        isPromise(beforeEvent())
-      ) {
-        const result = (await beforeEvent()) as boolean;
-        if (!result) return false;
-      }
     }
     
     vnode.className = "out " + vnode.className;
-    // console.log('vnode',vnode);
     vnode.addEventListener(
       "animationend",
       function () {
-        postEvent?.();
-        const naBox = document.getElementById(message_id);
+        // const naBox = document.getElementById(message_id);
           naBox!.removeChild(vnode);
       },
       false
     );
-    
     // Clear the timer and delete it from the storage.
-    if (this.timeouts[id]) {
-      clearTimeout(this.timeouts[id]);
-      delete this.timeouts[id];
+    if (this.timeouts[dom]) {
+      clearTimeout(this.timeouts[dom]);
+      delete this.timeouts[dom];
     }
-    console.log('vnode',this.timeouts);
     
-    this.store.delete(id);
+    this.store.delete(dom);
 
 
 
   }
   
   timebomb(data: BaseArgumentType) {
-    console.log('timebomb',data);
+    // console.log('timebomb',data);
     const { durationTime, id } = data;
     return setTimeout(() => {
       this.remove(data);
     
-    }, durationTime);
+    }, durationTime+this.store.size*500);
   }
   
   removeAll() {

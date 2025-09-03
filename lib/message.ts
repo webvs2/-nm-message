@@ -7,7 +7,7 @@ import { StoreSteward } from "./tool/state";
 let globalDefaultOptions: Partial<optionType> = {
   type: "info",
   durationTime: 3000, //ms
-  postEvent: () => { },
+  // postEvent: () => { },
   class: "",
 };
 
@@ -40,7 +40,7 @@ class MessageClass {
         class: `na-box`,
         id: this.message_id
       }
-    }));
+    })as HTMLElement);
 
   }
   show(option: Partial<optionType>|string) {
@@ -48,32 +48,20 @@ class MessageClass {
     if (typeof option === 'string') {
       option2 = { content: option };
     }
-    const optionMerged = { ...globalDefaultOptions, ...option2 };
+    const optionMerged = { ...globalDefaultOptions, ...option2 } as optionType;
     const  { type, content, suffix } =optionMerged
-    // const id = `na-box_${new Date().getTime()}`;
-    const id =this.message_id +`_`+'item'+new Date().getTime();
+    const id =this.message_id +`_`+'item'+new Date().getTime()+ Math.floor(Math.random()*1000);
     const isele = isElement(content);
     const dom = render({
       tag: "div",
       attr: {
         class: 
-          `na-con  enter na-box_${type} ${option.class} `
+          `na-con  enter na-box_${type} ${optionMerged.class} `
         ,
         id: id,
-        style: { top: `${20 + 0 * 70}px` },
+        style: { top: `${20 + 0 * 20}px` },
       },
-      children: [
-        (
-          !isele ? {
-            tag: "span",
-            children: content,
-          } : {
-            tag: "div",
-            attr: {
-              id: `${id}_content`,
-            }
-          }
-        ),
+      children: [content,
         (
           suffix ? {
             tag: "div",
@@ -82,22 +70,7 @@ class MessageClass {
             },
             on: {
               click: () => {
-                option?.suffixEvent!({
-                  close: () => {
-                    // 使用公共方法查找项目，修复私有属性访问错误
-                    const store = new StoreSteward();
-                    let item = null;
-                    for (const storeItem of store.values()) {
-                      if (storeItem.id === id) {
-                        item = storeItem;
-                        break;
-                      }
-                    }
-                    if (item) {
-                      store.remove(item, true);
-                    }
-                  }
-                });
+                optionMerged?.suffixEvent!(optionMerged);
               }
             },
             children: suffix,
@@ -106,13 +79,12 @@ class MessageClass {
 
       ].filter(item => item !== undefined) as any[],
     })
-    document.getElementById(this.message_id)!.appendChild(dom);
+    document.getElementById(this.message_id)!.appendChild(dom as HTMLElement);
     store.push({ ...optionMerged , dom: id, message_id: this.message_id });
   }
 
   static init(options: Partial<optionType>) {
     globalDefaultOptions = { ...globalDefaultOptions, ...options };
-    // return new MessageClass({});
   }
 }
 
