@@ -2,7 +2,7 @@ import "./styles/index.scss";
 import render, { isElement } from "./tool/render";
 import { optionType, messageType } from "./tool/interfaces";
 import { StoreSteward } from "./tool/state";
- const store = new StoreSteward();
+const store = new StoreSteward();
 // 添加全局默认配置
 let globalDefaultOptions: Partial<optionType> = {
   type: "info",
@@ -39,12 +39,12 @@ class MessageClass {
         class: `na-box`,
         id: this.message_id
       }
-    })as HTMLElement);
+    }) as HTMLElement);
 
   }
-  show(option: Partial<optionType>|string) {
+  show(option: Partial<optionType> | string) {
     if (typeof document === "undefined") {
-      return { close: () => {} };
+      return { close: () => { } };
     }
     let option2 = option as Partial<optionType>;
     if (typeof option === 'string') {
@@ -55,15 +55,15 @@ class MessageClass {
     if (this.message_id == null) {
       this.createBox();
     }
-    const  { type, content, suffix } =optionMerged
-    const id =this.message_id +`_`+'item'+new Date().getTime()+ Math.floor(Math.random()*1000);
+    const { type, content, suffix } = optionMerged
+    const id = this.message_id + `_` + 'item' + new Date().getTime() + Math.floor(Math.random() * 1000);
     const boxEl = document.getElementById(this.message_id!);
     const index = boxEl ? boxEl.children.length : 0;
     const dom = render({
       tag: "div",
       attr: {
-        class: 
-          `na-con  enter na-box_${type} ${optionMerged.class} `
+        class:
+          `na-con na-box_${type} ${optionMerged.class} `
         ,
         id: id,
         style: { top: `${20 + index * 12}px` },
@@ -77,7 +77,7 @@ class MessageClass {
             },
             on: {
               click: () => {
-                const close = () => store.remove({ ...optionMerged , dom: id, message_id: this.message_id }, true);
+                const close = () => store.remove({ ...optionMerged, dom: id, message_id: this.message_id }, true);
                 optionMerged?.suffixEvent && optionMerged.suffixEvent({ close });
               }
             },
@@ -88,8 +88,11 @@ class MessageClass {
       ].filter(item => item !== undefined) as any[],
     })
     document.getElementById(this.message_id!)!.appendChild(dom as HTMLElement);
-    store.push({ ...optionMerged , dom: id, message_id: this.message_id });
-    const close = () => store.remove({ ...optionMerged , dom: id, message_id: this.message_id }, true);
+    store.push({ ...optionMerged, dom: id, message_id: this.message_id });
+    const close = () => store.remove({ ...optionMerged, dom: id, message_id: this.message_id }, true);
+    requestAnimationFrame(() => {
+      (dom as HTMLElement).classList.add("enter");
+    });
     return { close };
   }
 
