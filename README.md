@@ -212,6 +212,43 @@ pnpm build
 pnpm preview
 ```
 
+## 🚀 自动发布
+
+本项目配置了 GitHub Actions 自动发布工作流，将自动构建并发布到 npm。
+
+### 设置步骤
+
+1. **获取 npm Token**
+
+   - 访问 [npm](https://www.npmjs.com/) 登录你的账户
+   - 进入 `Access Tokens` 页面
+   - 生成一个新的 `Automation` Token
+
+2. **配置 GitHub Secrets**
+
+   - 进入你的 GitHub 仓库
+   - 点击 `Settings` → `Secrets and variables` → `Actions`
+   - 添加一个新的 Secret:
+     - 名称: `NPM_TOKEN`
+     - 值: 你刚才生成的 npm Token
+
+3. **发布版本**
+
+   ```bash
+   # 1. 创建并推送新标签
+   git tag -a v3.2.0 -m "Release version 3.2.0"
+   git push origin v3.2.0
+
+   # 2. GitHub Actions 会自动触发构建和发布
+   ```
+
+### 工作流说明
+
+- 工作流文件位置: `.github/workflows/npm-publish.yml`
+- 触发条件: 推送以 `v` 开头的标签（如 `v3.2.0`）
+- 使用 Node.js 20 和 pnpm 9
+- 自动执行: 安装依赖 → 构建 → 发布到 npm
+
 ## 📊 性能优化
 
 v3.2.0 更新了以下优化：
