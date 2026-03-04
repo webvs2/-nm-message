@@ -3,20 +3,42 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [dts({ rollupTypes: true, name: "main" })],
+  plugins: [dts({ 
+    rollupTypes: true, 
+    name: "main",
+    cleanVueFileName: true,
+    insertTypesEntry: true,
+    outDir: 'dist'
+  })],
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/index.ts'),
       name: 'nm',
-      formats: ['es']
+      formats: ['es'],
+      fileName: (format) => `nm.js`
     },
     rollupOptions: {
       output: {
         globals: {
         },
+        preserveModules: false,
+        compact: true
       },
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false
+      }
     },
-    // 启用压缩
     minify: 'esbuild',
+    target: 'es2020',
+    cssCodeSplit: false,
+    sourcemap: false,
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 10,
+    emptyOutDir: true
   },
+  esbuild: {
+    drop: ['console', 'debugger'],
+    treeShaking: true
+  }
 })
