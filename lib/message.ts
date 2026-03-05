@@ -66,7 +66,7 @@ class MessageClass {
           `na-con na-box_${type} ${optionMerged.class} `
         ,
         id: id,
-        style: { top: `${20 + index * 12}px` },
+        style: { top: `${20 + index * 42}px` },
       },
       children: [content,
         (

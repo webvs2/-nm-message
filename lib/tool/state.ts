@@ -58,7 +58,7 @@ export class StoreSteward {
 
     const children = Array.from(naBox.children) as HTMLElement[];
     children.forEach((child, index) => {
-      child.style.top = `${20 + index * 12}px`;
+      child.style.top = `${20 + index * 42}px`;
     });
   }
 
