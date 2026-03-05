@@ -2,9 +2,12 @@
   "name": "@nanometer/nm",
   "version": "3.2.0",
   "type": "module",
+  "description": "A lightweight, modern message notification library",
+  "main": "dist/nm.js",
+  "module": "dist/nm.js",
   "scripts": {
     "dev": "vite",
-    "build": " vite build",
+    "build": "vite build",
     "preview": "vite preview --config vite.demo.config.js",
     "build:demo": "vite build --config vite.demo.config.js"
   },
@@ -13,16 +16,14 @@
   ],
   "keywords": [
     "message",
-    "alert"
+    "alert",
+    "notification",
+    "toast"
   ],
-  "main": "dist/nm.js",
-  "bin": {
-    "nm": "dist/nm.js"
-  },
   "exports": {
     ".": {
       "import": "./dist/nm.js",
-      "require": "./dist/nm.js"
+      "types": "./dist/main.d.ts"
     },
     "./style.css": "./dist/style.css"
   },

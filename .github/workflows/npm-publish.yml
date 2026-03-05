@@ -14,7 +14,8 @@ jobs:
         node-version: [20]
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
       
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -28,6 +29,15 @@ jobs:
       
       - name: Build
         run: pnpm build
+      
+      - name: Verify dist directory
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "Error: dist directory not found!"
+            exit 1
+          fi
+          echo "Dist files:"
+          ls -la dist/
       
       - name: Publish to npm
         run: pnpm publish --access public
