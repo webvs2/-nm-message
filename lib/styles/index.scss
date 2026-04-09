@@ -6,19 +6,22 @@
   --base-font-color: #303133;
   --na-succeed-color: #72e985;
   --na-error-color: #ce4a4e;
-  --na-padding: 6px 10px;
+  --na-padding: 10px 14px;
   --na-animation-duration: 0.3s;
   --na-justify-content: center;
   --na-zindex: 100;
+  --na-glass-blur: 14px;
+  --na-glass-bg: rgba(255, 255, 255, 0.2);
+  --na-glass-border: rgba(255, 255, 255, 0.35);
 }
 
 @mixin alert-theme($color, $bkColor, $side) {
   background-color: $bkColor;
-  color: #fff;
+  color: $color;
 
   .na-icon {
     color: $color;
-    font-weight: 400;
+    font-weight: 600;
   }
 }
 
@@ -43,17 +46,25 @@
 }
 
 .na-con {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
-  // margin-bottom: 15px;
+  background: var(--na-glass-bg);
+  backdrop-filter: saturate(180%) blur(var(--na-glass-blur));
+  -webkit-backdrop-filter: saturate(180%) blur(var(--na-glass-blur));
+  border: 1px solid var(--na-glass-border);
+  box-shadow:
+    0 10px 30px rgba(10, 12, 20, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
   font-size: 14px;
   display: inline-flex;
   justify-content: var(--na-justify-content);
   align-items: baseline;
   padding: var(--na-padding);
   text-align: var(--na-text-align);
-  border-radius: 4px;
+  border-radius: 14px;
   cursor: pointer;
   position: absolute;
+  color: #111;
+  letter-spacing: 0.2px;
+  overflow: hidden;
 
   span {
     display: inline-block;
@@ -61,10 +72,13 @@
   }
 
   &:hover {
-    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow:
+      0 14px 34px rgba(10, 12, 20, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
-  transition: all;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
 }
 
 .enter {
@@ -82,20 +96,20 @@
 }
 
 .na-box_success {
-  @include alert-theme(#67c23a, #67c23a, var(--na-succeed-color));
+  @include alert-theme(#111, rgba(52, 199, 89, 0.26), var(--na-succeed-color));
 }
 
 .na-box_warning {
-  @include alert-theme(#fff, #e6a23c, #ffb38c);
+  @include alert-theme(#111, rgba(255, 159, 10, 0.25), #ffb38c);
 }
 
 .na-box_info {
-  color: var(--base-font-color) !important;
-  @include alert-theme(#909399, #fff, #ebeef5);
+  color: #111 !important;
+  @include alert-theme(#111, rgba(10, 132, 255, 0.2), #ebeef5);
 }
 
 .na-box_error {
-  @include alert-theme(#fef0f0, #f56c6c, var(--na-error-color));
+  @include alert-theme(#111, rgba(255, 69, 58, 0.25), var(--na-error-color));
 }
 
 .na-icon {
@@ -111,5 +125,7 @@
   bottom: 0;
   padding: 0px 10px;
   margin-left: 10px;
-  border-left: #fff 1px solid;
+  border-left: 1px solid rgba(255, 255, 255, 0.35);
+  color: #111;
+  font-weight: 500;
 }
